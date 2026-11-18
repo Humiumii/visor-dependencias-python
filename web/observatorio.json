@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "project": "observatorio",
+  "modules": [
+    {
+      "id": "arranque.py",
+      "name": "arranque",
+      "path": "arranque.py",
+      "package": false
+    },
+    {
+      "id": "cielos/__init__.py",
+      "name": "cielos",
+      "path": "cielos/__init__.py",
+      "package": true
+    },
+    {
+      "id": "cielos/catalogo.py",
+      "name": "cielos.catalogo",
+      "path": "cielos/catalogo.py",
+      "package": false
+    },
+    {
+      "id": "cielos/config.py",
+      "name": "cielos.config",
+      "path": "cielos/config.py",
+      "package": false
+    },
+    {
+      "id": "cielos/coordenadas.py",
+      "name": "cielos.coordenadas",
+      "path": "cielos/coordenadas.py",
+      "package": false
+    },
+    {
+      "id": "cielos/rutas.py",
+      "name": "cielos.rutas",
+      "path": "cielos/rutas.py",
+      "package": false
+    },
+    {
+      "id": "cielos/servicio.py",
+      "name": "cielos.servicio",
+      "path": "cielos/servicio.py",
+      "package": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "arranque.py",
+      "target": "cielos/config.py"
+    },
+    {
+      "source": "arranque.py",
+      "target": "cielos/rutas.py"
+    },
+    {
+      "source": "cielos/catalogo.py",
+      "target": "cielos/coordenadas.py"
+    },
+    {
+      "source": "cielos/catalogo.py",
+      "target": "cielos/rutas.py"
+    },
+    {
+      "source": "cielos/rutas.py",
+      "target": "cielos/config.py"
+    },
+    {
+      "source": "cielos/rutas.py",
+      "target": "cielos/servicio.py"
+    },
+    {
+      "source": "cielos/servicio.py",
+      "target": "cielos/catalogo.py"
+    },
+    {
+      "source": "cielos/servicio.py",
+      "target": "cielos/coordenadas.py"
+    }
+  ],
+  "warnings": [
+    {
+      "kind": "external",
+      "path": "cielos/coordenadas.py",
+      "line": 1,
+      "statement": "math",
+      "message": "Sin módulo interno resoluble."
+    }
+  ]
+}
