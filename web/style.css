@@ -323,7 +323,7 @@ h2 {
   flex: none;
 }
 .node-name {
-  font: 500 11px var(--mono);
+  font: 500 13px var(--mono);
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;

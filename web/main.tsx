@@ -11,14 +11,14 @@ import '@fontsource/ibm-plex-mono/latin-500.css'
 import '@fontsource/ibm-plex-mono/latin-600.css'
 import './style.css'
 
-const nodeWidth = 174
+const nodeWidth = 184
 const nodeHeight = 52
 
 function layout(report: Report) {
   const graph = new dagre.graphlib.Graph()
   graph.setGraph({
     rankdir: 'LR',
-    ranksep: 74,
+    ranksep: 62,
     nodesep: 30,
     marginx: 38,
     marginy: 42,
