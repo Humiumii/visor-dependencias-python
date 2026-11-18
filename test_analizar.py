@@ -52,6 +52,26 @@ class AnalyzerTest(unittest.TestCase):
             self.assertEqual({w["kind"] for w in report["warnings"]},
                              {"ambiguous", "unresolved"})
 
+    def test_package_as_root_and_ambiguous_package_attribute(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory) / "pkg"
+            root.mkdir()
+            (root / "__init__.py").write_text("shadow = 1\nfrom . import entry\n")
+            (root / "shadow.py").touch()
+            (root / "entry.py").write_text(
+                "from . import shadow, missing\nfrom pkg import shadow\nimport pkg.other\n"
+            )
+            (root / "other.py").touch()
+            report = analyze(root)
+            self.assertEqual([edge for edge in report["edges"]], [
+                {"source": "__init__.py", "target": "entry.py"},
+                {"source": "entry.py", "target": "other.py"},
+            ])
+            self.assertEqual([(w["kind"], w["statement"]) for w in report["warnings"]], [
+                ("ambiguous", "pkg.shadow"), ("unresolved", "pkg.missing"),
+                ("ambiguous", "pkg.shadow"),
+            ])
+
 
 if __name__ == "__main__":
     unittest.main()
